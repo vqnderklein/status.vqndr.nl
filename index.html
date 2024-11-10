@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <script src="/app/core.js" defer></script>
+
+    <title>Status van vqnderklein.nl services &bull; status.vqndr.nl</title>
+</head>
+
+<body>
+    <section class="bodyWrapper live">
+        <nav>
+            <header>
+                <a href="/"><img src="https://vqnderklein.nl/assets/img/favicon-light.svg" alt="vqnderklein.nl logo" title="vqnderklein.nl"></a>
+                <a href="">Contact</a>
+            </header>
+            <div class="dataMenu">
+                <a class="selected pageSelector" data-page-name="live">Live status</a>
+                <a class="pageSelector" data-page-name="hist">History</a>
+            </div>
+        </nav>
+        <header>
+            <div>
+                <h1>webservices</h1>
+                <p>
+                    <span id="uptimePer">100</span>% uptime
+                </p>
+            </div>
+            <div class="statusRow"></div>
+            <div class="statusDate">
+                <p>13 Aug.</p>
+                <p>Vandaag</p>
+            </div>
+
+        </header>
+        <div class="legend">
+            <p>Legenda:</p>
+            <span>
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24">
+                        <path fill="currentColor" fill-rule="evenodd" d="M12 21a9 9 0 1 0 0-18a9 9 0 0 0 0 18m-.232-5.36l5-6l-1.536-1.28l-4.3 5.159l-2.225-2.226l-1.414 1.414l3 3l.774.774z" clip-rule="evenodd" />
+                    </svg>
+                    Operationeel  
+                </p>
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M10.03 3.659c.856-1.548 3.081-1.548 3.937 0l7.746 14.001c.83 1.5-.255 3.34-1.969 3.34H4.254c-1.715 0-2.8-1.84-1.97-3.34zM12.997 17A.999.999 0 1 0 11 17a.999.999 0 0 0 1.997 0m-.259-7.853a.75.75 0 0 0-1.493.103l.004 4.501l.007.102a.75.75 0 0 0 1.493-.103l-.004-4.502z" />
+                    </svg>
+                   Verminderde prestaties
+                </p>
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M12 17q.425 0 .713-.288T13 16t-.288-.712T12 15t-.712.288T11 16t.288.713T12 17m-1-4h2V7h-2zm1 9q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22" />
+                    </svg>
+                    Offline
+                </p>
+            </span>
+        </div>
+        <main>
+            <section>
+                <h2>Systeem services</h2>
+                <article class="statusItem online">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="35px" height="35px" viewBox="0 0 24 24">
+                        <path fill="currentColor" fill-rule="evenodd" d="M12 21a9 9 0 1 0 0-18a9 9 0 0 0 0 18m-.232-5.36l5-6l-1.536-1.28l-4.3 5.159l-2.225-2.226l-1.414 1.414l3 3l.774.774z" clip-rule="evenodd" />
+                    </svg>
+                    <span>
+                        <header>Databases</header>
+                        <p>Authenticatie, portaal, CMS, game progress </p>
+                    </span>
+                </article>
+                <article class="statusItem online">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="35px" height="35px" viewBox="0 0 24 24">
+                        <path fill="currentColor" fill-rule="evenodd" d="M12 21a9 9 0 1 0 0-18a9 9 0 0 0 0 18m-.232-5.36l5-6l-1.536-1.28l-4.3 5.159l-2.225-2.226l-1.414 1.414l3 3l.774.774z" clip-rule="evenodd" />
+                    </svg>
+                    <span>
+                        <header>Hosting</header>
+                        <p>CDN, drive, website, webmail, games </p>
+                    </span>
+                </article>
+                <article class="statusItem online">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="35px" height="35px" viewBox="0 0 24 24">
+                        <path fill="currentColor" fill-rule="evenodd" d="M12 21a9 9 0 1 0 0-18a9 9 0 0 0 0 18m-.232-5.36l5-6l-1.536-1.28l-4.3 5.159l-2.225-2.226l-1.414 1.414l3 3l.774.774z" clip-rule="evenodd" />
+                    </svg>
+                    <span>
+                        <header>Mail</header>
+                        <p>IMAP, POP3, SMTP, server mails  </p>
+                    </span>
+                </article>
+                <article class="statusItem online">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="35px" height="35px" viewBox="0 0 24 24">
+                        <path fill="currentColor" fill-rule="evenodd" d="M12 21a9 9 0 1 0 0-18a9 9 0 0 0 0 18m-.232-5.36l5-6l-1.536-1.28l-4.3 5.159l-2.225-2.226l-1.414 1.414l3 3l.774.774z" clip-rule="evenodd" />
+                    </svg>
+                    <span>
+                        <header>Games</header>
+                        <p>API, game sessies, game core   </p>
+                    </span>
+                </article>
+                <article class="statusItem online">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="35px" height="35px" viewBox="0 0 24 24">
+                        <path fill="currentColor" fill-rule="evenodd" d="M12 21a9 9 0 1 0 0-18a9 9 0 0 0 0 18m-.232-5.36l5-6l-1.536-1.28l-4.3 5.159l-2.225-2.226l-1.414 1.414l3 3l.774.774z" clip-rule="evenodd" />
+                    </svg>
+                    <span>
+                        <header>Applicaties</header>
+                        <p>Web, Authenticatie, API, panel   </p>
+                    </span>
+                </article>
+            </section>
+            <aside>
+                <h2>Actieve service problemen</h2>
+                <p>All systems are operational</p>
+                <h2>Verholpen service problemen</h2>
+                <p>Opgeloste service problemen</p>
+                <h2>Onderhoudsmeldingen</h2>
+                <p>All systems are operational</p>
+            </aside>
+        </main>
+    </section>
+    <section class="bodyWrapper history">
+        <nav>
+            <header>
+                <a href="/"><img src="https://vqnderklein.nl/assets/img/favicon-light.svg" alt="vqnderklein.nl logo" title="vqnderklein.nl"></a>
+                <a href="">Contact</a>
+            </header>
+            <div class="dataMenu">
+                <a class="pageSelector" data-page-name="live">Live status</a>
+                <a class="pageSelector selected" data-page-name="hist">History</a>
+            </div>
+        </nav>
+        <main>
+            <section>
+                <h2>Geschiedenis</h2>
+                <div class="controls">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M20 9v6h-8v4.84L4.16 12L12 4.16V9z" />
+                        </svg>
+                    </span>
+                    <span>
+                        <p>November</p>
+                        <p>100%</p>
+                    </span>
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M4 15V9h8V4.16L19.84 12L12 19.84V15z" />
+                        </svg>
+                    </span>
+                </div>
+                <div class="pastIncidentsGrid">
+
+                    <div class="incidentDay online"></div>
+                    <div class="incidentDay online"></div>
+                    <div class="incidentDay online"></div>
+                    <div class="incidentDay online"></div>
+                    <div class="incidentDay online"></div>
+                    <div class="incidentDay partially"></div>
+                    <div class="incidentDay major"></div>
+                    <div class="incidentDay "></div>
+                    <div class="incidentDay "></div>
+                    <div class="incidentDay "></div>
+                    <div class="incidentDay "></div>
+                    <div class="incidentDay "></div>
+                    <div class="incidentDay "></div>
+                    <div class="incidentDay "></div>
+                    <div class="incidentDay "></div>
+                    <div class="incidentDay online"></div>
+                    <div class="incidentDay online"></div>
+                    <div class="incidentDay online"></div>
+                    <div class="incidentDay online"></div>
+                    <div class="incidentDay online"></div>
+                    <div class="incidentDay partially"></div>
+                    <div class="incidentDay major"></div>
+                    <div class="incidentDay "></div>
+                    <div class="incidentDay "></div>
+                    <div class="incidentDay "></div>
+                    <div class="incidentDay "></div>
+                    <div class="incidentDay "></div>
+                    <div class="incidentDay "></div>
+                    <div class="incidentDay "></div>
+                    <div class="incidentDay "></div>
+                </div>
+            </section>
+            <aside>
+                <h2>Verholpen problemen</h2>
+                <section>
+                    <article class="incidentElement">
+                        <header>
+                            Verminderde prestaties web01
+                        </header>
+                        <ul>
+                            <li>
+                                <header>Nov 08 2024 &bull; 12:50</header>
+                                <p>web01 is weer toegankelijk</p>
+                                <span class="statusTag finished">Opgelost</span>
+                            </li>
+                            <li>
+                                <header>Nov 08 2024 &bull; 12:10</header>
+                                <p>Probleem is gevonden, service start opnieuw op</p>
+                                <span class="statusTag ongoing">Monitoring</span>
+                            </li>
+                            <li>
+                                <header>Nov 08 2024 &bull; 12:04</header>
+                                <p>We ondervinden toegankelijkheidsproblemen met web01, web01 is deels ontoegankelijk</p>
+                                <span class="statusTag discover">Analyse</span>
+                            </li>
+                        </ul>
+
+                    </article>
+                </section>
+            </aside>
+        </main>
+    </section>
+    <section class="angleHolder">
+        <div class="angle"></div>
+    </section>
+    <footer>
+        <section>
+            <span>           
+                 <a href="/"><img src="https://vqnderklein.nl/assets/img/favicon-dark.svg" alt="vqnderklein logo (donkere versie)" title="vqnderklein.nl" /></a>
+                <header>&copy; vqnderklein.nl</header>
+            </span>
+            <span>
+                <ul>
+                    <li><a href="https://vqnderklein.nl/" target="_blank">vqnderklein.nl</a></li>
+                    <li><a href="https://vqnderklein.nl/privacy" target="_blank">pricacy </a></li>
+                </ul>
+            </span>
+        </section>
+    </footer>
+
+</body>
+
+</html>

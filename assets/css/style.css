@@ -1,0 +1,382 @@
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        border: 0;
+        font-family: Poppins;
+    }
+    
+     :root {
+        --mainBackgroundColor: #fafafa;
+        --font: #040403;
+        --fontAccent: #838383;
+        --lightGrey: #cfcfcf;
+        --secundary: #304ffe;
+        --secundaryDark: #0026ff;
+        --secundaryLight: #8f9fff;
+        --accent1: #E84855;
+        --portfolioCount: '3';
+    }
+    
+    body {
+        background-color: #0d1117;
+        color: var(--lightGrey);
+        scrollbar-gutter: stable;
+    }
+    
+    body>section.bodyWrapper {
+        max-width: 1200px;
+        margin: auto;
+        overflow-x: hidden;
+        position: relative;
+        z-index: 100;
+    }
+    
+    nav>header>a>img {
+        max-width: 50px;
+    }
+    
+    nav {
+        padding: 1rem 0rem;
+    }
+    
+    nav>header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    nav>header>a:last-child {
+        padding: 6px 18px;
+        border: 1px solid var(--secundaryLight);
+        color: var(--secundaryLight);
+        text-decoration: none;
+        border-radius: 5px;
+        transition: 300ms ease-in;
+    }
+    
+    nav>header>a:last-child:hover {
+        background-color: var(--secundaryLight);
+        color: #040403;
+    }
+    
+    .dataMenu {
+        margin-top: 2rem;
+        width: max-content;
+        display: flex;
+        gap: 2rem;
+        border-bottom: 1px solid var(--mainBackgroundColor);
+    }
+    
+    .dataMenu>a {
+        padding-bottom: 10px;
+        color: var(--mainBackgroundColor);
+        text-decoration: none;
+        font-family: Poppins;
+        letter-spacing: 0.5px;
+        display: block;
+        font-weight: 300;
+        cursor: pointer;
+    }
+    
+    .dataMenu>a.selected {
+        font-weight: bold;
+        border-bottom: 2px solid var(--mainBackgroundColor);
+    }
+    
+    body>section>header {
+        padding: 1.5rem 2rem;
+        margin-top: 1rem;
+        background-color: #151b23;
+        border: 1px solid #363636;
+        border-radius: 5px;
+    }
+    
+    body>section>header>div {
+        display: flex;
+        color: #fafafa;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .statusRow {
+        display: flex;
+        flex-wrap: nowrap;
+        margin-top: 15px;
+        gap: 3px;
+    }
+    
+    .statusDay {
+        flex: 1 1 calc((100% - 267px) / 90);
+        height: 30px;
+        border-radius: 2px;
+        background-color: #838383;
+    }
+    
+    .statusDay.online,
+    .incidentDay.online {
+        background-color: #07ff6e;
+    }
+    
+    .statusDay.partially,
+    .incidentDay.partially {
+        background-color: #fbff00;
+    }
+    
+    .statusDay.major,
+    .incidentDay.major {
+        background-color: #ff9900;
+    }
+    
+    .statusDate {
+        padding-top: 10px;
+        font-family: "Noto sans";
+        font-weight: 300;
+        color: #cfcfcf;
+    }
+    
+    .legend {
+        padding-top: 10px;
+        margin-bottom: 2rem;
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+    }
+    
+    .legend span {
+        display: flex;
+        gap: 15px;
+    }
+    
+    body>section>.legend>span>p:nth-child(1)>svg,
+    .statusItem.online svg {
+        color: #07ff6e;
+    }
+    
+    body>section>.legend>span>p:nth-child(2)>svg,
+    .statusItem.partially svg {
+        color: #fbff00;
+    }
+    
+    body>section>.legend>span>p:nth-child(3)>svg,
+    .statusItem.major svg {
+        color: #ff9900;
+    }
+    
+    .legend span p {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        color: #fafafa;
+        font-size: 15px;
+    }
+    
+    h2 {
+        color: #fafafa;
+        padding-bottom: 1rem;
+    }
+    
+    h2:not(:first-child) {
+        padding-top: 2.5rem;
+    }
+    
+    main {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+    }
+    
+    .statusItem {
+        display: flex;
+        margin-bottom: 1rem;
+        border: 1px solid #363636;
+        align-items: center;
+        width: 100%;
+        gap: 10px;
+        padding: 1rem;
+        border-radius: 10px;
+        background-color: #151b23;
+    }
+    
+    .statusItem header {
+        font-weight: 800;
+        font-family: Poppins;
+        color: #fafafa;
+        font-size: 18px;
+        letter-spacing: 0.3px;
+    }
+    
+    .statusItem p {
+        color: #d8d8d8;
+    }
+    
+    .angle {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 0;
+        background-color: #f6f9fc;
+        height: 100%;
+        width: 100%;
+        transform: skewY(-6deg);
+        transform-origin: 100% 100%;
+    }
+    
+    .angleHolder {
+        padding-top: 15rem;
+        overflow: hidden;
+        position: relative;
+        margin-top: 0;
+    }
+    
+    footer {
+        background-color: #f6f9fc;
+        position: relative;
+        margin-top: -2rem;
+        color: #040403;
+    }
+    
+    footer>section {
+        max-width: 1200px;
+        padding-top: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 2rem;
+        margin: auto;
+    }
+    
+    footer>section ul {
+        list-style-type: none;
+    }
+    
+    footer>section li {
+        padding-bottom: 5px;
+    }
+    
+    footer a {
+        text-decoration: none;
+        color: #838383;
+        transition: 300ms ease-in;
+    }
+    
+    footer a:hover {
+        color: #0026ff;
+    }
+    
+    footer>section>span>a>img {
+        max-width: 50px;
+    }
+    
+    .history {
+        min-height: 80vh;
+        display: none;
+    }
+    
+    .history main {
+        margin-top: 2rem;
+    }
+    
+    .history main>Section {
+        padding: 0rem 1rem;
+    }
+    
+    .pastIncidentsGrid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 5px;
+        max-width: 60%;
+    }
+    
+    .incidentDay {
+        background-color: #838383;
+        width: 100%;
+        border-radius: 5px;
+        aspect-ratio: 1;
+    }
+    
+    .controls {
+        display: flex;
+        align-items: center;
+        padding-bottom: 10px;
+        max-width: 60%;
+        justify-content: space-between;
+    }
+    
+    .controls span:not(:nth-child(2)) {
+        display: flex;
+    }
+    
+    .controls span:nth-child(2) {
+        text-align: center;
+    }
+    
+    .controls span:nth-child(2)>p:nth-child(2) {
+        font-weight: bold;
+        color: #07ff6e;
+        font-size: 14px;
+    }
+    
+    .history aside section>article.incidentElement {
+        background-color: #151b23;
+        border: 1px solid #363636;
+        padding: 1rem;
+        position: relative;
+        border-radius: 5px;
+        margin-bottom: 1rem;
+    }
+    
+    .incidentElement header {
+        font-weight: bold;
+        font-family: Poppins;
+        font-size: 18px;
+        color: #e0e0e0;
+        padding-bottom: 10px;
+    }
+    
+    .incidentElement li>header {
+        font-weight: 500;
+        font-size: 13px;
+        font-family: "Noto sans";
+        padding-bottom: 0px;
+        color: #acacac;
+    }
+    
+    .incidentElement ul {
+        list-style-type: none;
+    }
+    
+    .incidentElement li {
+        padding-bottom: 1rem;
+        position: relative;
+    }
+    
+    .incidentElement li p {
+        color: #e9e9e9;
+        max-width: 70%;
+    }
+    
+    .statusTag {
+        padding: 3px 6px;
+        font-size: 13px;
+        border: 1px solid;
+        border-radius: 5px;
+        position: absolute;
+        color: #363636;
+        top: 1rem;
+        right: 1rem;
+    }
+    
+    .statusTag.ongoing {
+        color: #fbff00;
+    }
+    
+    .statusTag.finished {
+        color: #07ff6e;
+    }
+    
+    .statusTag.discover {
+        color: #ff9900;
+    }
