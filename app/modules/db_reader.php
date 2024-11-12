@@ -22,7 +22,7 @@ class DatabaseReader
                 "ip" => $retrievedData[0]['testIP'] ?? "N/A",
                 "date" => date("Y-m-d"),
                 "backlog" => $retrievedData[0]['backlog'] ?? "N/A",
-                "incidents" => $this->generateIncidentData($retrievedData)
+                "incidents" => ""
             ];
 
             $allServerData[] = $serverStatusReportFormat;
@@ -65,7 +65,7 @@ class DatabaseReader
         return $retrievedData;
     }
 
-    private function getAllServers($tableName, $columnName) {
+    public function getAllServers($tableName, $columnName) {
         $mysqli = Config::getDbConnectionWEB02();
 
         if ($mysqli->connect_error) {
@@ -96,14 +96,14 @@ class DatabaseReader
     private function generateIncidentData($data) {
         $incidents = [];
 
-        foreach ($data as $index => $entry) {
-            $incidents["incident-{$index}"] = [
-                "incidentId" => $entry['incidentId'] ?? "",
-                "description" => $entry['description'] ?? "",
-                "status" => $entry['status'] ?? "",
-                "created_at" => $entry['created_at'] ?? ""
-            ];
-        }
+        // foreach ($data as $index => $entry) {
+        //     $incidents["incident-{$index}"] = [
+        //         "incidentId" => $entry['incidentId'] ?? "",
+        //         "description" => $entry['description'] ?? "",
+        //         "status" => $entry['status'] ?? "",
+        //         "created_at" => $entry['created_at'] ?? ""
+        //     ];
+        // }
 
         return $incidents;
     }

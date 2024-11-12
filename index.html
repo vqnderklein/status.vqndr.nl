@@ -5,19 +5,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="preconnect" href="https://status.vqndr.nl/app/modules/db_provider.php">
+    <link rel="stylesheet" href="/assets/css/style.css" />
 
-    <script src="/app/core.js" defer></script>
+    <script src="/app/client/core.js" defer></script>
+    <script src="/app/client/contact.js" defer></script>
+    <script src="https://vqnderklein.nl//assets/js/contact-core.js" defer></script>
 
     <title>Status van vqnderklein.nl services &bull; status.vqndr.nl</title>
 </head>
 
 <body>
+    <section class="contactPoppup">
+        <div class="contactForm">
+            <h2>Contact</h2>
+            <form enctype="multipart/form-data">
+
+                <section>
+                    <span>
+                        <label for="firstName">Voornaam</label>
+                        <input type="text" required="" name="firstName" id="firstName">
+                    </span>
+                    <span>
+                        <label for="lastName">Achternaam</label>
+                        <input type="text" required="" name="lastName" id="lastName">
+                    </span>
+                </section>
+
+                <section>
+                    <span>
+                        <label for="email">Email</label>
+                        <input type="email" required="" name="email" id="email">
+                    </span>
+                    <span></span>
+                </section>
+
+                <section>
+                    <span>
+                        <label for="aanhef">Aanhef</label>
+                        <select required="" name="aanhef" id="aanhef">
+                            <option value="" disabled="" selected="" hidden="">Selecteer een optie</option>
+                            <option value="Dhr.">Dhr.</option>
+                            <option value="Mvr.">Mvr.</option>
+                            <option value="X">X</option>
+                        </select>
+                        
+                    </span>
+                    <span></span>
+                </section>
+
+                <section>
+                    <span>
+                        <label for="subject">Onderwerp</label>
+                        <input required="" type="text" name="subject" id="subject">
+                    </span>
+                </section>
+
+                <section>
+                    <span>
+                        <label for="message">Bericht</label>
+                        <textarea required="" name="message" id="message" rows="10"></textarea>
+                    </span>
+                </section>
+
+                <section>
+                    <span class="privacy">
+                        <label for="privacy">Ik accepteer de <a href="https://vqnderklein.nl/privacy" target="_blank">privacy voorwaarden</a>.</label>
+                        <input type="checkbox" required="" name="privacy" id="privacy"> 
+                    </span>
+                </section>
+
+                <input type="submit" value="Verstuur">
+            </form>
+        </div>
+    </section>
+
     <section class="bodyWrapper live">
         <nav>
             <header>
                 <a href="/"><img src="https://vqnderklein.nl/assets/img/favicon-light.svg" alt="vqnderklein.nl logo" title="vqnderklein.nl"></a>
-                <a href="">Contact</a>
+                <a href="#" class="contact-bttn">Contact</a>
             </header>
             <div class="dataMenu">
                 <a class="selected pageSelector" data-page-name="live">Live status</a>
@@ -31,9 +98,16 @@
                     <span id="uptimePer">100</span>% uptime
                 </p>
             </div>
-            <div class="statusRow"></div>
+
+            <div class="holder">
+                <div class="statusRow"></div>
+            </div>
+            <div class="toolTip">
+                <header>6 Dec.</header>
+                <p>100% uptime</p>
+            </div>
             <div class="statusDate">
-                <p>13 Aug.</p>
+                <p></p>
                 <p>Vandaag</p>
             </div>
 
@@ -59,12 +133,18 @@
                     </svg>
                     Offline
                 </p>
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10s10-4.486 10-10S17.514 2 12 2m5 12H7v-4h10z" />
+                    </svg>
+                    Onderhoud
+                </p>
             </span>
         </div>
         <main>
             <section>
-                <h2>Systeem services</h2>
-                <article class="statusItem online">
+                <h2>Systemen</h2>
+                <article class="statusItem online" data-serviceName="database">
                     <svg xmlns="http://www.w3.org/2000/svg" width="35px" height="35px" viewBox="0 0 24 24">
                         <path fill="currentColor" fill-rule="evenodd" d="M12 21a9 9 0 1 0 0-18a9 9 0 0 0 0 18m-.232-5.36l5-6l-1.536-1.28l-4.3 5.159l-2.225-2.226l-1.414 1.414l3 3l.774.774z" clip-rule="evenodd" />
                     </svg>
@@ -73,7 +153,7 @@
                         <p>Authenticatie, portaal, CMS, game progress </p>
                     </span>
                 </article>
-                <article class="statusItem online">
+                <article class="statusItem online" data-serviceName="hosting">
                     <svg xmlns="http://www.w3.org/2000/svg" width="35px" height="35px" viewBox="0 0 24 24">
                         <path fill="currentColor" fill-rule="evenodd" d="M12 21a9 9 0 1 0 0-18a9 9 0 0 0 0 18m-.232-5.36l5-6l-1.536-1.28l-4.3 5.159l-2.225-2.226l-1.414 1.414l3 3l.774.774z" clip-rule="evenodd" />
                     </svg>
@@ -82,7 +162,7 @@
                         <p>CDN, drive, website, webmail, games </p>
                     </span>
                 </article>
-                <article class="statusItem online">
+                <article class="statusItem online" data-serviceName="mail">
                     <svg xmlns="http://www.w3.org/2000/svg" width="35px" height="35px" viewBox="0 0 24 24">
                         <path fill="currentColor" fill-rule="evenodd" d="M12 21a9 9 0 1 0 0-18a9 9 0 0 0 0 18m-.232-5.36l5-6l-1.536-1.28l-4.3 5.159l-2.225-2.226l-1.414 1.414l3 3l.774.774z" clip-rule="evenodd" />
                     </svg>
@@ -91,16 +171,16 @@
                         <p>IMAP, POP3, SMTP, server mails  </p>
                     </span>
                 </article>
-                <article class="statusItem online">
+                <article class="statusItem maintenance" data-serviceName="games">
                     <svg xmlns="http://www.w3.org/2000/svg" width="35px" height="35px" viewBox="0 0 24 24">
-                        <path fill="currentColor" fill-rule="evenodd" d="M12 21a9 9 0 1 0 0-18a9 9 0 0 0 0 18m-.232-5.36l5-6l-1.536-1.28l-4.3 5.159l-2.225-2.226l-1.414 1.414l3 3l.774.774z" clip-rule="evenodd" />
+                        <path fill="white" d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10s10-4.486 10-10S17.514 2 12 2m5 12H7v-4h10z" />
                     </svg>
                     <span>
                         <header>Games</header>
                         <p>API, game sessies, game core   </p>
                     </span>
                 </article>
-                <article class="statusItem online">
+                <article class="statusItem online" data-serviceName="applicaties">
                     <svg xmlns="http://www.w3.org/2000/svg" width="35px" height="35px" viewBox="0 0 24 24">
                         <path fill="currentColor" fill-rule="evenodd" d="M12 21a9 9 0 1 0 0-18a9 9 0 0 0 0 18m-.232-5.36l5-6l-1.536-1.28l-4.3 5.159l-2.225-2.226l-1.414 1.414l3 3l.774.774z" clip-rule="evenodd" />
                     </svg>
@@ -112,11 +192,11 @@
             </section>
             <aside>
                 <h2>Actieve service problemen</h2>
-                <p>All systems are operational</p>
+                <p>Alle systemen zijn operationeel</p>
                 <h2>Verholpen service problemen</h2>
-                <p>Opgeloste service problemen</p>
+                <p>Geen recente problemen gevonden</p>
                 <h2>Onderhoudsmeldingen</h2>
-                <p>All systems are operational</p>
+                <p>Geen onderhoud gepland</p>
             </aside>
         </main>
     </section>
@@ -124,7 +204,7 @@
         <nav>
             <header>
                 <a href="/"><img src="https://vqnderklein.nl/assets/img/favicon-light.svg" alt="vqnderklein.nl logo" title="vqnderklein.nl"></a>
-                <a href="">Contact</a>
+                <a href="#" class="contact-bttn">Contact</a>
             </header>
             <div class="dataMenu">
                 <a class="pageSelector" data-page-name="live">Live status</a>

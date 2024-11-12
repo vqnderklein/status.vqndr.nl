@@ -88,12 +88,19 @@
     body>section>header {
         padding: 1.5rem 2rem;
         margin-top: 1rem;
+        position: relative;
+        height: 165px;
         background-color: #151b23;
         border: 1px solid #363636;
         border-radius: 5px;
     }
     
-    body>section>header>div {
+    .holder {
+        z-index: 100;
+        position: relative;
+    }
+    
+    body>section>header>div:not(.holder):not(.toolTip) {
         display: flex;
         color: #fafafa;
         justify-content: space-between;
@@ -106,12 +113,14 @@
         flex-wrap: nowrap;
         margin-top: 15px;
         gap: 3px;
+        height: 30px;
     }
     
     .statusDay {
         flex: 1 1 calc((100% - 267px) / 90);
         height: 30px;
         border-radius: 2px;
+        position: relative;
         background-color: #838383;
     }
     
@@ -150,19 +159,30 @@
         gap: 15px;
     }
     
+    .statusDay:hover~.toolTip {
+        opacity: 0;
+    }
+    
     body>section>.legend>span>p:nth-child(1)>svg,
-    .statusItem.online svg {
+    .statusItem.online svg,
+    .online {
         color: #07ff6e;
     }
     
     body>section>.legend>span>p:nth-child(2)>svg,
-    .statusItem.partially svg {
+    .statusItem.partially svg,
+    .partially {
         color: #fbff00;
     }
     
     body>section>.legend>span>p:nth-child(3)>svg,
-    .statusItem.major svg {
+    .statusItem.major svg,
+    .major {
         color: #ff9900;
+    }
+    
+    .noInfo {
+        color: #838383;
     }
     
     .legend span p {
@@ -183,6 +203,7 @@
     }
     
     main {
+        padding-top: 2rem;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 3rem;
@@ -307,6 +328,7 @@
     
     .controls span:not(:nth-child(2)) {
         display: flex;
+        cursor: pointer;
     }
     
     .controls span:nth-child(2) {
@@ -379,4 +401,150 @@
     
     .statusTag.discover {
         color: #ff9900;
+    }
+    
+    .toolTip {
+        border: 1px solid #363636;
+        position: absolute;
+        display: none;
+        text-align: center;
+        top: 0;
+        z-index: 10;
+        background-color: #252525;
+        border-radius: 5px;
+        width: 150px;
+        padding: 6px 12px;
+    }
+    
+    .toolTip header {
+        font-family: Noto Sans;
+        letter-spacing: 1px;
+        font-weight: bold;
+    }
+    
+    .toolTip p {
+        font-family: monospace;
+        padding-top: 5px;
+        font-size: 14px;
+    }
+    
+    .contactPoppup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        cursor: pointer;
+        height: 100%;
+        width: 100%;
+        background-color: rgb(0, 0, 0, 50%);
+        z-index: 100000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .contactForm {
+        margin: auto;
+        width: 800px;
+        background-color: #0f0f0f;
+        border: 1px solid #363636;
+        border-radius: 5px;
+        padding: 2rem 4rem;
+    }
+    
+    form {
+        border-radius: 8px;
+    }
+    
+    form section {
+        display: flex;
+        margin-bottom: 1rem;
+        gap: 1rem;
+    }
+    
+    form section>.privacy {
+        display: flex;
+        flex-flow: row-reverse;
+        align-items: baseline;
+        justify-content: left;
+    }
+    
+    form a {
+        color: #d3d9ff;
+    }
+    
+    form section>span {
+        width: 100%;
+    }
+    
+    form section>span label {
+        display: block;
+        padding-bottom: 6px;
+        font-weight: 300;
+    }
+    
+    form section>span input {
+        padding: 8px 12px;
+        width: 100%;
+        outline: transparent;
+    }
+    
+    form section>span input:focus {
+        border: 2px solid #00A6A6;
+        outline: transparent;
+    }
+    
+    form section>span select {
+        width: 100%;
+        padding: 8px 0 8px 4px;
+        border: 2px solid #00A6A6;
+        outline: transparent;
+        border-radius: 5px;
+    }
+    
+    #message {
+        width: 100%;
+        resize: none;
+        padding: 8px;
+        outline: transparent;
+    }
+    
+    #message:focus {
+        border: 2px solid #00A6A6;
+    }
+    
+    input[type="submit"] {
+        padding: 8px 24px;
+        border-radius: 5px;
+        cursor: pointer;
+        color: black;
+        outline: transparent;
+        width: max-content;
+        background-color: #00A6A6;
+        border: 1px solid var(--lightGrey);
+    }
+    
+    input[type="checkbox"] {
+        width: max-content;
+        margin-right: 3px;
+    }
+    
+    input[value="Email is verstuurd!"] {
+        padding: 6px 12px;
+        border: none;
+        width: max-content;
+        border: 2px solid #00A6A6;
+        border-radius: 5px;
+        color: white;
+    }
+    
+    input[value="Er is een fout opgetreden. Probeer het later nog eens."] {
+        padding: 6px 12px;
+        border: none;
+        color: white;
+        border: 2px solid var(--accent1);
+        border-radius: 5px;
+    }
+    
+    input {
+        width: -webkit-fill-available;
     }
