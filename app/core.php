@@ -28,12 +28,12 @@ $dbProgramm = new InsertData();
 
 // insert webserver information into database
 $webserverStatus = new WebserverTests();
-$webserverArray = json_decode($webserverStatus->webserverTests(), true);
+$webserverArray = json_decode($webserverStatus->runTest(), true);
 $insert = $dbProgramm->insertIntoDatabase($webserverArray, $conn);
 
 //insert api information into database
 $apiTests = new APITests();
-$webserverApiArray = json_decode($apiTests->runAPITests(), true);
+$webserverApiArray = json_decode($apiTests->runTest(), true);
 $insert = $dbProgramm->insertIntoDatabase($webserverApiArray, $conn);
 
 //insert db information into database

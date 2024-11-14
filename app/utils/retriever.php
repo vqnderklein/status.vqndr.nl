@@ -19,14 +19,12 @@ class RetrievController
             die("Error executing first query: " . $conn->error);
         }
 
-        // Second query: selects the first record from `dayRecords`, ordered by `date` ascending and then by `id` ascending
         $sql2 = "SELECT online, incidents FROM dayRecords ORDER BY date DESC, id DESC;";
         $result2 = $conn->query($sql2);
         if (!$result2) {
             die("Error executing second query: " . $conn->error);
         }
 
-        // Process each result set individually if needed
         $data1 = [];
         while ($row = $result1->fetch_assoc()) {
             $data1[] = $row;
@@ -42,7 +40,6 @@ class RetrievController
         $data = $sortInformation->sort($data1, $data2);;
         
 
-        // Free results if needed
         $result1->free();
         $result2->free();
 

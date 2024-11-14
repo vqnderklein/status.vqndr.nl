@@ -130,8 +130,6 @@ class DatabaseTests
             }
         }
 
-
-
         return [
             'status' => $status,
             'results' => $results,

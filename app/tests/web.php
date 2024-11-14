@@ -17,7 +17,7 @@ class WebserverTests
         }
     }
 
-    public function webserverTests()
+    public function runTest()
     {
         $jsonFile = 'env.json';
 
@@ -32,7 +32,7 @@ class WebserverTests
             return json_encode(['error' => "Failed to decode JSON. Error: " . json_last_error_msg()]);
         }
 
-        $results = []; // Array to store server status results
+        $results = []; 
 
         if (isset($data['config']['web']['servers'])) {
             foreach ($data['config']['web']['servers'] as $server) {
@@ -40,10 +40,8 @@ class WebserverTests
                 $port = $server['port'];
                 $name = $server['name'];
 
-                // Check if server is online or offline
                 $status = $this->isServerOnline($host, $port) ? 'online' : 'offline';
 
-                // Add server status information to results array
                 $results[] = [
                     'name' => $name,
                     'host' => $host,
@@ -55,7 +53,6 @@ class WebserverTests
             return json_encode(['error' => "No servers found in the JSON file."]);
         }
 
-        // Return results as JSON
         return json_encode($results);
     }
 }

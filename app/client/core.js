@@ -1,6 +1,7 @@
 const dataRow = document.querySelector('.statusRow');
 const pageSelector = document.querySelectorAll('.pageSelector');
 let currentPage = 1;
+let api_response = [];
 let JSONdata = [];
 
 pageSelector.forEach(page => {
@@ -9,18 +10,6 @@ pageSelector.forEach(page => {
         changePage(currentPage);
     });
 });
-
-let hideTooltipTimeout;
-
-
-console.log(document.querySelector('section.bodyWrapper>header'))
-
-document.querySelector('section.bodyWrapper>nav>header').addEventListener('mouseover', () => {
-
-    console.log('test');
-
-});
-
 
 function changePage(currentPage) {
     if (currentPage == 2) {
@@ -103,7 +92,6 @@ function formatDate(dateString) {
 
 function editToolTip(date) {
     const length = JSONdata.length;
-    console.log(formatDate(date));
 
     const tooltipHeader = document.querySelector('.toolTip>header');
     const tooltipText = document.querySelector('.toolTip>p');
@@ -115,13 +103,12 @@ function editToolTip(date) {
     let dateFound = false;
 
     for (let i = 0; i < length; i++) {
-        console.log(date, JSONdata[i].date);
 
         if (date === JSONdata[i].date) {
             tooltipText.textContent = "uptime " + JSONdata[i].uptime + "%";
             dateFound = true;
 
-            if (JSONdata[i].uptime > 95 && JSONdata[i].uptime <= 99) {
+            if (JSONdata[i].uptime > 96 && JSONdata[i].uptime < 100) {
                 tooltipText.classList.add('partially');
             } else if (JSONdata[i].uptime > 0 && JSONdata[i].uptime <= 95) {
                 tooltipText.classList.add('major');
@@ -160,7 +147,6 @@ function returnData90DaysAgo() {
 function createWebserviceBar(data) {
     let span = document.createElement('span');
 
-    console.log(data);
 
     //History data
     for (var i = 88; i >= 0; i--) {
@@ -241,6 +227,8 @@ function prepEnv(information) {
     newForm = newForm.concat(oldDates);
 
     JSONdata = newForm;
+
+    createHistoryView();
 }
 
 
@@ -252,7 +240,8 @@ window.onload = function() {
     xhr.onload = function() {
         if (xhr.status === 200) {
             const data = JSON.parse(xhr.responseText);
-            console.log(data);
+
+            api_response = data;
 
             //Adjust uptime counter
             document.querySelector('#uptimePer').textContent = data.history.globalUptime;
@@ -266,6 +255,8 @@ window.onload = function() {
             changeStatusIcons(information);
 
             prepEnv(data);
+
+
         }
     }
     xhr.send();

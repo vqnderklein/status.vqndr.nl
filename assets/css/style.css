@@ -38,7 +38,7 @@
     }
     
     nav {
-        padding: 1rem 0rem;
+        padding: 2rem 0rem;
     }
     
     nav>header {
@@ -119,9 +119,14 @@
     .statusDay {
         flex: 1 1 calc((100% - 267px) / 90);
         height: 30px;
+        transition: 200ms;
         border-radius: 2px;
         position: relative;
         background-color: #838383;
+    }
+    
+    .statusDay:hover {
+        transform: scale(1.1);
     }
     
     .statusDay.online,
@@ -306,6 +311,7 @@
     
     .pastIncidentsGrid {
         display: grid;
+        padding-top: 5px;
         grid-template-columns: repeat(7, 1fr);
         gap: 5px;
         max-width: 60%;
@@ -316,6 +322,17 @@
         width: 100%;
         border-radius: 5px;
         aspect-ratio: 1;
+        cursor: pointer;
+    }
+    
+    .tooltip {
+        position: fixed;
+        display: none;
+        background: #333;
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 5px;
+        font-size: 13px;
     }
     
     .controls {
@@ -326,9 +343,20 @@
         justify-content: space-between;
     }
     
-    .controls span:not(:nth-child(2)) {
+    .archiveMonth::first-letter {
+        text-transform: uppercase;
+    }
+    
+    .controls button {
         display: flex;
         cursor: pointer;
+        background-color: transparent;
+        color: #cfcfcf;
+        transition: 500ms;
+    }
+    
+    .controls button:hover {
+        color: var(--secundaryLight);
     }
     
     .controls span:nth-child(2) {
@@ -526,6 +554,10 @@
     input[type="checkbox"] {
         width: max-content;
         margin-right: 3px;
+    }
+    
+    .incidentDay.emptyDay {
+        background-color: transparent
     }
     
     input[value="Email is verstuurd!"] {

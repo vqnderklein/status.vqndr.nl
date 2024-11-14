@@ -10,6 +10,10 @@
 
     <script src="/app/client/core.js" defer></script>
     <script src="/app/client/contact.js" defer></script>
+    <script src="/app/client/buffer.js" defer></script>
+
+    <script src="/app/client/history.js" defer></script>
+
     <script src="https://vqnderklein.nl//assets/js/contact-core.js" defer></script>
 
     <title>Status van vqnderklein.nl services &bull; status.vqndr.nl</title>
@@ -215,54 +219,30 @@
             <section>
                 <h2>Geschiedenis</h2>
                 <div class="controls">
-                    <span>
+                    <button id="prevMonth">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 24 24">
                             <path fill="currentColor" d="M20 9v6h-8v4.84L4.16 12L12 4.16V9z" />
                         </svg>
-                    </span>
+                    </button>
                     <span>
-                        <p>November</p>
-                        <p>100%</p>
+                        <p class="archiveMonth"></p>
+                        <p class="uptimeCounter">100%</p>
                     </span>
-                    <span>
+                    <button id="nextMonth">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 24 24">
                             <path fill="currentColor" d="M4 15V9h8V4.16L19.84 12L12 19.84V15z" />
                         </svg>
-                    </span>
+                    </button>
                 </div>
                 <div class="pastIncidentsGrid">
 
-                    <div class="incidentDay online"></div>
-                    <div class="incidentDay online"></div>
-                    <div class="incidentDay online"></div>
-                    <div class="incidentDay online"></div>
-                    <div class="incidentDay online"></div>
-                    <div class="incidentDay partially"></div>
-                    <div class="incidentDay major"></div>
-                    <div class="incidentDay "></div>
-                    <div class="incidentDay "></div>
-                    <div class="incidentDay "></div>
-                    <div class="incidentDay "></div>
-                    <div class="incidentDay "></div>
-                    <div class="incidentDay "></div>
-                    <div class="incidentDay "></div>
-                    <div class="incidentDay "></div>
-                    <div class="incidentDay online"></div>
-                    <div class="incidentDay online"></div>
-                    <div class="incidentDay online"></div>
-                    <div class="incidentDay online"></div>
-                    <div class="incidentDay online"></div>
-                    <div class="incidentDay partially"></div>
-                    <div class="incidentDay major"></div>
-                    <div class="incidentDay "></div>
-                    <div class="incidentDay "></div>
-                    <div class="incidentDay "></div>
-                    <div class="incidentDay "></div>
-                    <div class="incidentDay "></div>
-                    <div class="incidentDay "></div>
-                    <div class="incidentDay "></div>
-                    <div class="incidentDay "></div>
+
                 </div>
+                <div class="tooltip">
+                    <strong id="date"></strong>
+                    <p id="uptime"></p>
+                </div>
+
             </section>
             <aside>
                 <h2>Verholpen problemen</h2>
@@ -290,6 +270,7 @@
                         </ul>
 
                     </article>
+
                 </section>
             </aside>
         </main>
