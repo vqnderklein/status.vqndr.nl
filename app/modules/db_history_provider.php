@@ -22,13 +22,6 @@ $month = (int)$_GET['month'];
 $year = (int)$_GET['year'];
 $action = $_GET['action'];
 
-$retriever = new RetrievController();
-$array = $retriever->getWebServices(1);
-
-$sortFunction = new SortInformation();
-$currentDayUptime = $sortFunction->returnHistoryUptimePercentage($array);
-$currentStatus = $sortFunction->returnStatusForCurrentDay($array);
-
 $dataFetcher = new HistroryFetcher($conn);
 $bufferGenerator = new BufferGenerator($dataFetcher);
 
