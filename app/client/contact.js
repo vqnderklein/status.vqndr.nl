@@ -7,6 +7,7 @@ contactBttn.forEach(button => {
 function openPoppup() {
     document.querySelector('.contactPoppup').style.display = 'flex';
     document.querySelector('body>section.bodyWrapper').style.filter = 'blur(4px)';
+    document.querySelector('body').style.position = 'fixed';
 }
 
 document.querySelector('.contactPoppup').addEventListener('click', (e) => {
@@ -22,4 +23,6 @@ document.querySelector('.contactPoppup form').addEventListener('click', (e) => {
 function closePoppup() {
     document.querySelector('.contactPoppup').style.display = 'none';
     document.querySelector('body>section.bodyWrapper').style.filter = 'blur(0px)';
+    document.querySelector('body').style.position = 'static';
+
 }

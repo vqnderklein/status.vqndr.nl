@@ -35,7 +35,6 @@ function expandBuffer(year, month) {
 function fetchData(year, month, action) {
     const url = `https://status.vqndr.nl/app/modules/db_history_provider.php?year=${year}&month=${month}&action=${action}`;
 
-    console.log(url);
     fetch(url)
         .then(response => response.json())
         .then(data => {

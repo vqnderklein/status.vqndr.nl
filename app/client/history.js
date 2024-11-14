@@ -57,7 +57,6 @@ function getDayStatus(date, e = null) {
     let found = false;
     const monthKey = `${currentYear}-${currentMonth}`;
 
-    console.log(e.target.attributes.today && currentYear === year)
 
     if (buffer[monthKey].data && buffer[monthKey].data[usableDate] || (e.target.attributes.today && currentYear === year) == true) {
         let uptime;
@@ -137,11 +136,13 @@ function createHistoryView() {
     const historyDays = document.querySelectorAll('.incidentDay');
     const monthKey = `${currentYear}-${currentMonth}`;
 
-    document.querySelector('.uptimeCounter').textContent = (buffer[monthKey].globalUptime > 0) ? `${buffer[monthKey].globalUptime}%` : "Geen informatie";
-    document.querySelector('.uptimeCounter').style.color = (buffer[monthKey].globalUptime == 0) ? '#838383' :
-        (buffer[monthKey].globalUptime == 100) ? '#07ff6e' :
-        (buffer[monthKey].globalUptime > 0 && buffer[monthKey].globalUptime < 95) ? '#ff9900' :
-        (buffer[monthKey].globalUptime >= 95 && buffer[monthKey].globalUptime < 100) ? '#fbff00' : '#838383';
+    if (buffer[monthKey]) {
+        document.querySelector('.uptimeCounter').textContent = (buffer[monthKey].globalUptime > 0) ? `${buffer[monthKey].globalUptime}%` : "Geen informatie";
+        document.querySelector('.uptimeCounter').style.color = (buffer[monthKey].globalUptime == 0) ? '#838383' :
+            (buffer[monthKey].globalUptime == 100) ? '#07ff6e' :
+            (buffer[monthKey].globalUptime > 0 && buffer[monthKey].globalUptime < 95) ? '#ff9900' :
+            (buffer[monthKey].globalUptime >= 95 && buffer[monthKey].globalUptime < 100) ? '#fbff00' : '#838383';
+    }
 
     historyDays.forEach(day => {
         if (buffer[monthKey]) {

@@ -460,6 +460,7 @@
         position: fixed;
         top: 0;
         left: 0;
+        overflow-y: scroll;
         cursor: pointer;
         height: 100%;
         width: 100%;
@@ -477,6 +478,11 @@
         border: 1px solid #363636;
         border-radius: 5px;
         padding: 2rem 4rem;
+        height: max-content;
+    }
+    
+    .contactPoppup::-webkit-scrollbar {
+        display: none;
     }
     
     form {
@@ -579,4 +585,137 @@
     
     input {
         width: -webkit-fill-available;
+    }
+    
+    @media screen and (max-width: 1200px) {
+        body>section {
+            padding: 1rem 1rem;
+        }
+        nav {
+            padding-top: 1rem;
+        }
+        footer>section {
+            padding: 1rem;
+            margin-top: -6rem;
+        }
+    }
+    
+    @media screen and (max-width: 900px) {
+        footer>section {
+            padding: 1rem;
+            margin-top: -8rem;
+        }
+        .statusDay {
+            flex: 1 1 calc((100% - 267px) / 60);
+        }
+        .statusDay:nth-child(-n+30) {
+            display: none;
+        }
+        .pastIncidentsGrid,
+        .controls {
+            max-width: 80%;
+        }
+    }
+    
+    @media screen and (max-width: 650px) {
+        footer>section {
+            padding: 1rem;
+            margin-top: -7rem;
+        }
+        .angleHolder {
+            margin-top: 2rem;
+            padding-top: 11rem;
+        }
+        .statusDay {
+            flex: 1 1 calc((100% - 267px) / 30);
+        }
+        .statusDay:nth-child(-n+61) {
+            display: none;
+        }
+        main {
+            display: block;
+            max-width: 80%;
+        }
+        main>aside {
+            margin-top: 2rem;
+        }
+        .legend span {
+            display: grid;
+            gap: 5px 0;
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+    
+    @media screen and (max-width: 650px) {
+        .legend span {
+            display: block;
+        }
+        .legend span p {
+            padding-bottom: 5px;
+        }
+        .legend {
+            align-items: start;
+        }
+    }
+    
+    @media screen and (max-width: 600px) {
+        form section {
+            display: block;
+        }
+        form section>span:nth-child(2)>label {
+            padding-top: 1rem;
+        }
+    }
+    
+    @media screen and (max-width: 500px) {
+        main {
+            display: block;
+            max-width: 100%;
+        }
+        .contactForm {
+            padding: 1rem;
+        }
+    }
+    
+    @media screen and (max-width: 400px) {
+        .pastIncidentsGrid,
+        .controls {
+            max-width: 100%;
+        }
+        .statusTag {
+            position: static;
+            width: max-content;
+            padding: 3px 10px;
+            margin-bottom: 10px;
+        }
+        .incidentElement li {
+            position: relative;
+            display: flex;
+            flex-flow: column-reverse;
+        }
+        .incidentElement li p {
+            max-width: 100%;
+        }
+    }
+    
+    @media screen and (max-width: 350px) {
+        body>section>header {
+            padding: 5px;
+            margin: 1rem -1rem;
+        }
+        .statusDay {
+            flex: 1 1 calc((100% - 267px) / 25);
+        }
+        .statusDay:nth-child(-n+25) {
+            display: none;
+        }
+        .legend {
+            display: block;
+        }
+        .legend span {
+            padding-top: 5px;
+        }
+        .legend span p {
+            gap: 5px;
+        }
     }
