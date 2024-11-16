@@ -34,6 +34,8 @@ function generateArchiveField() {
 
         div.setAttribute('date', longDateFormat(dayDate));
         div.addEventListener('mouseenter', (e) => showTooltip(e, formattedDate, getDayStatus(dayDate, e)));
+        div.addEventListener('click', (e) => showTooltip(e, formattedDate, getDayStatus(dayDate, e)));
+
         div.addEventListener('mouseleave', hideTooltip);
 
         archiveField.appendChild(div);
