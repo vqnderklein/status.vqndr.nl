@@ -85,6 +85,10 @@ function positionToolTip(clickedElement) {
 
 function formatDate(dateString) {
     const date = new Date(dateString);
+    if (isNaN(date.getTime())) {
+        console.error('Invalid Date:', dateString);
+        return 'Invalid Date';
+    }
     const day = date.getDate();
     const month = date.toLocaleString('nl-NL', { month: 'short' });
     return `${day} ${month}.`;
@@ -104,7 +108,8 @@ function editToolTip(date) {
 
     for (let i = 0; i < length; i++) {
 
-        if (date === JSONdata[i].date) {
+        if (date === JSONdata[i].date.replaceAll("-", "/")) {
+
             tooltipText.textContent = "uptime " + JSONdata[i].uptime + "%";
             dateFound = true;
 
@@ -210,9 +215,8 @@ function getDate(offset = 0) {
     const year = today.getFullYear();
     const month = today.getMonth() + 1;
     const day = today.getDate();
-    return `${year}-${month}-${day}`;
+    return `${year}/${month}/${day}`;
 }
-
 
 function prepEnv(information) {
     let newForm = [];
