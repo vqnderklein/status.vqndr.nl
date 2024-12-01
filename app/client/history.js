@@ -59,7 +59,6 @@ function getDayStatus(date, e = null) {
     let found = false;
     const monthKey = `${currentYear}-${currentMonth}`;
 
-
     if (buffer[monthKey].data && buffer[monthKey].data[usableDate] || (e.target.attributes.today && currentYear === year) == true) {
         let uptime;
         if (buffer[monthKey].data[usableDate])
@@ -109,7 +108,6 @@ function nextMonth() {
     currentYear = currentDate.getFullYear();
 
     generateArchiveField();
-    createHistoryView();
 
     const nextMonth = currentMonth + 1;
     const nextYear = nextMonth > 12 ? currentYear + 1 : currentYear;
@@ -122,7 +120,6 @@ function prevMonth() {
     currentYear = currentDate.getFullYear();
 
     generateArchiveField();
-    createHistoryView();
 
     const prevMonth = currentMonth - 1;
     const prevYear = prevMonth < 1 ? currentYear - 1 : currentYear;
@@ -132,22 +129,41 @@ function prevMonth() {
 document.getElementById("prevMonth").addEventListener('click', prevMonth);
 document.getElementById("nextMonth").addEventListener('click', nextMonth);
 
-generateArchiveField();
+
+function getUptimeColor(uptime) {
+    if (uptime === 0) return '#838383';
+    if (uptime === 100) return '#07ff6e';
+    if (uptime > 0 && uptime < 95) return '#ff9900';
+    if (uptime >= 95 && uptime < 100) return '#fbff00';
+    return '#838383';
+}
+
+function updateUptimeDisplay(uptime, textFallback = "Geen informatie") {
+    const uptimeCounter = document.querySelector('.uptimeCounter');
+    uptimeCounter.textContent = (uptime > 0) ? `${uptime}%` : textFallback;
+    uptimeCounter.style.color = getUptimeColor(uptime);
+}
 
 function createHistoryView() {
     const historyDays = document.querySelectorAll('.incidentDay');
     const monthKey = `${currentYear}-${currentMonth}`;
 
-    if (buffer[monthKey]) {
-        document.querySelector('.uptimeCounter').textContent = (buffer[monthKey].globalUptime > 0) ? `${buffer[monthKey].globalUptime}%` : "Geen informatie";
-        document.querySelector('.uptimeCounter').style.color = (buffer[monthKey].globalUptime == 0) ? '#838383' :
-            (buffer[monthKey].globalUptime == 100) ? '#07ff6e' :
-            (buffer[monthKey].globalUptime > 0 && buffer[monthKey].globalUptime < 95) ? '#ff9900' :
-            (buffer[monthKey].globalUptime >= 95 && buffer[monthKey].globalUptime < 100) ? '#fbff00' : '#838383';
+
+
+    const dayDate = JSONdata[0].date.split('/')[0] + "-" + JSONdata[0].date.split('/')[1];
+
+    if (buffer[monthKey].data.length !== 0) {
+        console.log(dayDate === monthKey);
+        updateUptimeDisplay(buffer[monthKey].globalUptime);
+    } else if (dayDate === monthKey) {
+        updateUptimeDisplay(JSONdata[0].uptime);
+    } else {
+        updateUptimeDisplay(0);
     }
 
-    historyDays.forEach(day => {
-        if (buffer[monthKey]) {
+    if (buffer[monthKey].data.length !== 0) {
+        historyDays.forEach(day => {
+
             Object.entries(buffer[monthKey].data).forEach(([date, details]) => {
                 if (day.getAttribute('date') == date) {
                     const dayData = details.downtime;
@@ -161,13 +177,16 @@ function createHistoryView() {
                     }
                 }
             });
-        }
-    });
+        });
+    }
+
 
     const today = new Date;
     let month = today.getMonth() + 1;
     if (currentMonth === month && year === currentYear) {
-        let day = today.getDate();
+        let day = (today.getDate() < 10) ? "0" + today.getDate() : today.getDate();
+
+        console.log(day);
         document.querySelector(`[date="${currentYear}-${currentMonth}-${day}"]`).classList.add("online");
         document.querySelector(`[date="${currentYear}-${currentMonth}-${day}"]`).setAttribute('today', true)
     }

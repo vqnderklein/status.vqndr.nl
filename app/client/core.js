@@ -11,10 +11,12 @@ pageSelector.forEach(page => {
     });
 });
 
+
 function changePage(currentPage) {
     if (currentPage == 2) {
         document.querySelector('.live').style.display = 'none';
         document.querySelector('.history').style.display = 'block';
+        generateArchiveField();
     } else {
         document.querySelector('.live').style.display = 'block';
         document.querySelector('.history').style.display = 'none';
@@ -226,13 +228,12 @@ function prepEnv(information) {
         "downtime": information.currentDay.downtime,
         "uptime": information.currentDay.uptime
     };
+
     newForm.push(today);
     const oldDates = information.history.history_days;
     newForm = newForm.concat(oldDates);
 
     JSONdata = newForm;
-
-    createHistoryView();
 }
 
 
