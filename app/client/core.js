@@ -24,19 +24,14 @@ function changePage(currentPage) {
 }
 
 function returnStatusElement(downtime) {
-
     let span = document.createElement('span');
 
     span.addEventListener('click', (e) => createEventHover(e));
     span.addEventListener('mouseover', (e) => createEventHover(e));
 
     document.querySelector('.holder').addEventListener('mouseout', (e) => {
-
         document.querySelector('.toolTip').style.display = 'none';
-
     });
-
-    console.log(downtime);
 
     if (downtime >= 5)
         span.classList.add('major');
@@ -110,12 +105,18 @@ function editToolTip(date) {
     let dateFound = false;
 
     date = date.split("/");
+    date[1] = date[1].toString().padStart(2, '0')
     date[2] = date[2].toString().padStart(2, '0')
     date = date.join("/");
 
     for (let i = 0; i < length; i++) {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        const formattedDate = `${year}-${month}-${day}`;
 
-        if (date === JSONdata[i].date.replaceAll("-", "/")) {
+        if (date === JSONdata[i].date.replaceAll("-", "/") || formattedDate.replaceAll("-", "/") === date) {
 
             tooltipText.textContent = "uptime " + parseFloat(JSONdata[i].uptime).toFixed(2) + "%";
             dateFound = true;
