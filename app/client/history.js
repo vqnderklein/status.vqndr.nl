@@ -54,35 +54,47 @@ function longDateFormat(d) {
 }
 
 function getDayStatus(date, e = null) {
-    const usableDate = longDateFormat(date);
+    let usableDate = longDateFormat(date);
     let response = "Geen informatie";
     let found = false;
     const monthKey = `${currentYear}-${currentMonth}`;
 
+    usableDate = usableDate.split("-");
+    usableDate[1] = (usableDate[1] < 10) ? "0" + usableDate[1] : usableDate[1];
+    usableDate = usableDate.join("-");
+
+    console.log(usableDate)
+
     if (buffer[monthKey].data && buffer[monthKey].data[usableDate] || (e.target.attributes.today && currentYear === year) == true) {
         let uptime;
-        if (buffer[monthKey].data[usableDate])
-            uptime = buffer[monthKey].data[usableDate].uptime;
-        else if (e.target.attributes.today)
-            uptime = api_response.currentDay.uptime;
+        let downtime;
 
-        response = `uptime ${uptime}%`;
+        if (buffer[monthKey].data[usableDate]) {
+            uptime = buffer[monthKey].data[usableDate].uptime;
+            downtime = buffer[monthKey].data[usableDate].downtime;
+        } else if (e.target.attributes.today) {
+            uptime = api_response.currentDay.uptime;
+            downtime = api_response.currentDay.downtime;
+        }
+
+        response = `uptime ${parseFloat(uptime).toFixed(2)}%`;
         tooltip.querySelector('#uptime').classList.remove('noInfo', 'online', 'partially', 'major');
-        const uptimeParsed = parseInt(uptime);
-        const color = (uptimeParsed === 100) ? 'online' : (uptimeParsed >= 99 && uptimeParsed <= 95) ? 'partially' : 'major';
+        const uptimeParsed = parseFloat(downtime);
+        const color = (uptimeParsed === 0) ? 'online' : (uptimeParsed < 5 && uptimeParsed >= 1) ? 'partially' : 'major';
         tooltip.querySelector('#uptime').classList.add(color);
 
         found = true;
     }
 
-    if (!found) {
+    if (!found)
         tooltip.querySelector('#uptime').classList.add('noInfo');
-    }
 
     return response;
 }
 
 function showTooltip(event, date, status) {
+    console.log(status);
+
     tooltip.querySelector('#date').textContent = date;
     tooltip.querySelector('#uptime').textContent = status;
     tooltip.style.display = 'block';
@@ -131,11 +143,25 @@ document.getElementById("nextMonth").addEventListener('click', nextMonth);
 
 
 function getUptimeColor(uptime) {
-    if (uptime === 0) return '#838383';
-    if (uptime === 100) return '#07ff6e';
-    if (uptime > 0 && uptime < 95) return '#ff9900';
-    if (uptime >= 95 && uptime < 100) return '#fbff00';
-    return '#838383';
+    //Function for global uptime coloring
+
+    const colors = [
+        '#838383', // Gray DEFAULT
+        '#07ff6e', // Green ONLINE
+        '#ff9900', // Orange MAJOR 
+        '#fbff00' // Yellow PARTIALLY
+    ];
+
+    console.log(uptime);
+
+    if (uptime === 100)
+        return colors[1];
+    else if (uptime < 100 && uptime >= 95)
+        return colors[3];
+    else if (uptime < 95 && uptime > 0)
+        return colors[2];
+    else
+        return colors[0];
 }
 
 function updateUptimeDisplay(uptime, textFallback = "Geen informatie") {
@@ -148,15 +174,15 @@ function createHistoryView() {
     const historyDays = document.querySelectorAll('.incidentDay');
     const monthKey = `${currentYear}-${currentMonth}`;
 
-
+    console.log(monthKey, buffer[monthKey])
 
     const dayDate = JSONdata[0].date.split('/')[0] + "-" + JSONdata[0].date.split('/')[1];
 
     if (buffer[monthKey].data.length !== 0) {
-        console.log(dayDate === monthKey);
+        console.log(buffer[monthKey]);
         updateUptimeDisplay(buffer[monthKey].globalUptime);
     } else if (dayDate === monthKey) {
-        updateUptimeDisplay(JSONdata[0].uptime);
+        updateUptimeDisplay(JSONdata[0].globalUptime);
     } else {
         updateUptimeDisplay(0);
     }
@@ -165,15 +191,28 @@ function createHistoryView() {
         historyDays.forEach(day => {
 
             Object.entries(buffer[monthKey].data).forEach(([date, details]) => {
-                if (day.getAttribute('date') == date) {
+
+                if (day.getAttribute('date') == null)
+                    return;
+
+                const dayCardDate = day.getAttribute('date').split("-");
+                let newMonth = (dayCardDate[1] < 10) ? "0" + dayCardDate[1] : dayCardDate[1];
+                const newDateFormat = dayCardDate[0] + "-" + newMonth + "-" + dayCardDate[2];
+
+
+                if (newDateFormat == date) {
                     const dayData = details.downtime;
 
-                    if (dayData.downtime > 5) {
+                    console.log(dayData == 0, date)
+
+                    if (dayData > 5) {
                         day.classList.add('major');
-                    } else if (dayData.downtime > 0) {
+                    } else if (dayData > 0) {
                         day.classList.add('partially');
-                    } else {
+                    } else if (dayData == 0) {
                         day.classList.add('online');
+                    } else {
+                        day.classList.add('noInfo');
                     }
                 }
             });

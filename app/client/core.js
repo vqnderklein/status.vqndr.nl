@@ -36,6 +36,7 @@ function returnStatusElement(downtime) {
 
     });
 
+    console.log(downtime);
 
     if (downtime >= 5)
         span.classList.add('major');
@@ -108,18 +109,24 @@ function editToolTip(date) {
 
     let dateFound = false;
 
+    date = date.split("/");
+    date[2] = date[2].toString().padStart(2, '0')
+    date = date.join("/");
+
     for (let i = 0; i < length; i++) {
 
         if (date === JSONdata[i].date.replaceAll("-", "/")) {
 
-            tooltipText.textContent = "uptime " + JSONdata[i].uptime + "%";
+            tooltipText.textContent = "uptime " + parseFloat(JSONdata[i].uptime).toFixed(2) + "%";
             dateFound = true;
 
-            if (JSONdata[i].uptime > 96 && JSONdata[i].uptime < 100) {
+            console.log(JSONdata[i].downtime, JSONdata[i].downtime)
+
+            if (JSONdata[i].downtime > 0 && JSONdata[i].downtime < 5) {
                 tooltipText.classList.add('partially');
-            } else if (JSONdata[i].uptime > 0 && JSONdata[i].uptime <= 95) {
+            } else if (JSONdata[i].downtime >= 5) {
                 tooltipText.classList.add('major');
-            } else {
+            } else if (JSONdata[i].downtime == 0) {
                 tooltipText.classList.add('online');
             }
             break;
@@ -153,7 +160,6 @@ function returnData90DaysAgo() {
 
 function createWebserviceBar(data) {
     let span = document.createElement('span');
-
 
     //History data
     for (var i = 88; i >= 0; i--) {
@@ -191,7 +197,8 @@ function returnGroupedInformation(data) {
             statusSummary[groupName] = "online";
         } else if (onlineCount > 0) {
             statusSummary[groupName] = "partially";
-        } else {
+        } else if (onlineCount > 5) {
+            console.log("test");
             statusSummary[groupName] = "major";
         }
     });
@@ -249,7 +256,7 @@ window.onload = function() {
             api_response = data;
 
             //Adjust uptime counter
-            document.querySelector('#uptimePer').textContent = data.history.globalUptime;
+            document.querySelector('#uptimePer').textContent = data.history.globalUptime.toFixed(2);
 
             //Adjust uptime date
             document.querySelector('.statusDate>p:first-child').textContent = returnData90DaysAgo();
@@ -260,8 +267,6 @@ window.onload = function() {
             changeStatusIcons(information);
 
             prepEnv(data);
-
-
         }
     }
     xhr.send();

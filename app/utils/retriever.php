@@ -50,7 +50,7 @@ class RetrievController
 
         $conn =  Config::getDbConnectionWEB02();
        
-        $sql = "SELECT  serverName, online FROM dayRecords ORDER BY date DESC, id DESC LIMIT $cap;";
+        $sql = "SELECT serverName, online FROM dayRecords ORDER BY date DESC, id DESC LIMIT $cap;";
         $result = $conn->query($sql);
         if (!$result) {
             die("Error executing first query: " . $conn->error);
