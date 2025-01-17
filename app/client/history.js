@@ -205,15 +205,7 @@ function createHistoryView() {
 
                     console.log(dayData == 0, date)
 
-                    if (dayData > 5) {
-                        day.classList.add('major');
-                    } else if (dayData > 0) {
-                        day.classList.add('partially');
-                    } else if (dayData == 0) {
-                        day.classList.add('online');
-                    } else {
-                        day.classList.add('noInfo');
-                    }
+                    colorField(day, dayData);
                 }
             });
         });
@@ -225,8 +217,25 @@ function createHistoryView() {
     if (currentMonth === month && year === currentYear) {
         let day = (today.getDate() < 10) ? "0" + today.getDate() : today.getDate();
 
-        console.log(day);
-        document.querySelector(`[date="${currentYear}-${currentMonth}-${day}"]`).classList.add("online");
-        document.querySelector(`[date="${currentYear}-${currentMonth}-${day}"]`).setAttribute('today', true)
+        console.log(JSONdata[0]);
+
+        const downtime = JSONdata[0].downtime;
+        const elem = document.querySelector(`[date="${currentYear}-${currentMonth}-${day}"]`);
+
+        colorField(elem, downtime);
+
+        elem.setAttribute('today', true)
     }
 };
+
+function colorField(elem, downtime) {
+    if (downtime > 5) {
+        elem.classList.add('major');
+    } else if (downtime > 0) {
+        elem.classList.add('partially');
+    } else if (downtime == 0) {
+        elem.classList.add('online');
+    } else {
+        elem.classList.add('noInfo');
+    }
+}
