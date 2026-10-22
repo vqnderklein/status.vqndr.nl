@@ -1,59 +1,55 @@
 :root {
-  /* Oppervlakken en tekst (lichte modus) */
-  --bg: oklch(.995 .003 180);
-  /* achtergrond van de inhoud */
-  --soft: oklch(.968 .008 180);
-  /* vlakken van onderdelen in een uitgeklapte groep */
-  --ink: oklch(.26 .02 200);
-  /* hoofdtekst, ook de popup-achtergrond */
-  --mut: oklch(.54 .02 200);
-  /* gedempte tekst (uitleg, labels) */
-  --line: oklch(.92 .01 180);
-  /* lijntjes en randen */
-
-  /* Statuskleuren (stipjes, balken, badges) */
-  --ok: oklch(.66 .12 165);
-  /* groen */
-  --deg: oklch(.77 .13 80);
-  /* geel */
-  --out: oklch(.64 .16 27);
-  /* rood */
-  --mnt: oklch(.62 .13 275);
-  /* paars */
-
-  /* Het linkerpaneel: donkere versie van elke status */
-  --p-ok: oklch(.31 .05 175);
-  --p-deg: oklch(.33 .06 80);
-  --p-out: oklch(.32 .07 27);
-  --p-mnt: oklch(.31 .07 275);
-
-  /* Tekst en accenten op het paneel */
-  --panel-text: #F3F5F8;
-  --panel-subtext: #cbcbcb;
-  --panel-line: rgba(255, 255, 255, .3);
-  /* randen van de knoppen */
-  --panel-on: rgba(255, 255, 255, .18);
-  /* actieve knop */
+    /* Oppervlakken en tekst (lichte modus) */
+    --bg: oklch(.995 .003 180);
+    /* achtergrond van de inhoud */
+    --soft: oklch(.968 .008 180);
+    /* vlakken van onderdelen in een uitgeklapte groep */
+    --ink: oklch(.26 .02 200);
+    /* hoofdtekst, ook de popup-achtergrond */
+    --mut: oklch(.54 .02 200);
+    /* gedempte tekst (uitleg, labels) */
+    --line: oklch(.92 .01 180);
+    /* lijntjes en randen */
+    /* Statuskleuren (stipjes, balken, badges) */
+    --ok: oklch(.66 .12 165);
+    /* groen */
+    --deg: oklch(.77 .13 80);
+    /* geel */
+    --out: oklch(.64 .16 27);
+    /* rood */
+    --mnt: oklch(.62 .13 275);
+    /* paars */
+    /* Het linkerpaneel: donkere versie van elke status */
+    --p-ok: oklch(.31 .05 175);
+    --p-deg: oklch(.33 .06 80);
+    --p-out: oklch(.32 .07 27);
+    --p-mnt: oklch(.31 .07 275);
+    /* Tekst en accenten op het paneel */
+    --panel-text: #F3F5F8;
+    --panel-subtext: #cbcbcb;
+    --panel-line: rgba(255, 255, 255, .3);
+    /* randen van de knoppen */
+    --panel-on: rgba(144, 144, 144, 0.58);
+    /* actieve knop */
 }
 
 :root:not([data-theme="light"]) {
-  --bg: oklch(.2 .014 200);
-  --soft: oklch(.24 .016 200);
-  --ink: oklch(.93 .01 180);
-  --mut: oklch(.72 .02 190);
-  --line: oklch(.32 .018 200);
-  --ok: oklch(.76 .12 165);
-  --deg: oklch(.82 .13 80);
-  --out: oklch(.72 .15 27);
-  --mnt: oklch(.74 .12 275);
+    --bg: oklch(.2 .014 200);
+    --soft: oklch(.24 .016 200);
+    --ink: oklch(.93 .01 180);
+    --mut: oklch(.72 .02 190);
+    --line: oklch(.32 .018 200);
+    --ok: oklch(.76 .12 165);
+    --deg: oklch(.82 .13 80);
+    --out: oklch(.72 .15 27);
+    --mnt: oklch(.74 .12 275);
 }
 
-
 html {
-  font-family: 'Figtree Variable', sans-serif;
+    font-family: 'Figtree Variable', sans-serif;
 }
 
 body {
-  box-sizing: border-box;
-  margin: 0;
+    box-sizing: border-box;
+    margin: 0;
 }
