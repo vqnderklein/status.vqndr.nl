@@ -1,12 +1,21 @@
 <script>
 	import ServiceGroup from "$lib/components/ServiceGroup.svelte";
-    import IncidentSummaryBar from "$lib/components/IncidentSummaryBar.svelte";
+	import IncidentSummaryBar from "$lib/components/IncidentSummaryBar.svelte";
 	import { CircleCheck } from "@lucide/svelte";
+
+	let incident = $state(true);
 </script>
 
 <svelte:head>
 	<title>Network Status &bull; vqnderklein.nl</title>
 </svelte:head>
+
+{#if incident}
+	<h2>Lopend</h2>
+	<div class="incidentContainer">
+		<IncidentSummaryBar />
+	</div>
+{/if}
 
 <h2>Diensten</h2>
 
@@ -24,7 +33,7 @@
 			<CircleCheck
 				title="Operationeel"
 				style="fill: var(--ok);"
-                color="black"
+				color="black"
 				aria-label="Operationeel"
 				size={25}
 			/> Netwerk
@@ -35,29 +44,29 @@
 			<CircleCheck
 				title="Operationeel"
 				style="fill: var(--ok);"
-                color="black"
+				color="black"
 				aria-label="Operationeel"
 				size={25}
 			/> Email
 		</span>
 	</li>
-    <li>
+	<li>
 		<span class="title">
 			<CircleCheck
 				title="Operationeel"
 				style="fill: var(--ok);"
-                color="black"
+				color="black"
 				aria-label="Operationeel"
 				size={25}
 			/> Docs
 		</span>
 	</li>
-    <li>
+	<li>
 		<span class="title">
 			<CircleCheck
 				title="Operationeel"
 				style="fill: var(--ok);"
-                color="black"
+				color="black"
 				aria-label="Operationeel"
 				size={25}
 			/> Monitor services
@@ -73,11 +82,15 @@
 <a class="link" href="/history">Alle incidenten bekijken</a>
 
 <style>
-    .link {
-        padding-top: 1rem;
-        color: var(--panel-text);
-        display: block;
-    }
+	.incidentContainer {
+		margin-bottom: 3rem;
+	}
+
+	.link {
+		padding-top: 1rem;
+		color: var(--panel-text);
+		display: block;
+	}
 
 	.services {
 		margin-bottom: 3rem;
@@ -87,7 +100,7 @@
 		display: flex;
 		gap: 7px;
 		align-items: center;
-        font-size: 15px;
+		font-size: 15px;
 	}
 
 	h2 {
@@ -100,7 +113,7 @@
 		list-style-type: none;
 		margin: 0;
 		padding: 0;
-        margin-bottom: 2rem;
+		margin-bottom: 2rem;
 	}
 
 	ul li {
