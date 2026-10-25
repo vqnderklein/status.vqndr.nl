@@ -6,7 +6,7 @@
 
 	let open = $state(false);
 	let incident = $state("1");
-    let maintenace = $state(true);
+	let maintenace = $state(true);
 
 	function toggle() {
 		open = !open;
@@ -37,18 +37,20 @@
 
 			<p class="groupName">Website</p>
 
-			<span class="groupRows">
-				2 onderdelen
-				<ChevronDown
-					size={13}
-					style={`transform: rotate(${open ? 180 : 0}deg); transition: transform 200ms ease;`}
-				/>
-			</span>
+			<div class="extra-information-wrapper">
+				<span class="groupRows">
+					2 onderdelen
+					<ChevronDown
+						size={13}
+						style={`transform: rotate(${open ? 180 : 0}deg); transition: transform 200ms ease;`}
+					/>
+				</span>
 
-			<div class="containerDescription">
-				<span class="groupDescription">i</span>
-				<div class="descriptionHover">
-					Registratie en authenticatie
+				<div class="containerDescription">
+					<span class="groupDescription">i</span>
+					<div class="descriptionHover">
+						Registratie en authenticatie
+					</div>
 				</div>
 			</div>
 		</div>
@@ -58,9 +60,7 @@
 		{/if}
 	</div>
 	{#if maintenace}
-		<p class="maintenance-message">
-			Onderhoud gepland op 25 okt
-		</p>
+		<p class="maintenance-message">Onderhoud gepland op 25 okt</p>
 	{/if}
 
 	{#if !open}
@@ -79,6 +79,12 @@
 		margin: 0;
 		font-size: 15px;
 		padding-bottom: 1rem;
+	}
+
+	.extra-information-wrapper {
+		display: flex;
+		align-items: center;
+		gap: 10px;
 	}
 
 	.container {
@@ -172,5 +178,26 @@
 
 	.uptime {
 		color: var(--mut);
+	}
+
+	@media screen and (max-width: 400px) {
+		.extra-information-wrapper {
+			position: absolute;
+			top: 3rem;
+		}
+
+		.header[aria-expanded=true] .extra-information-wrapper {
+			position: relative;
+			top: 0;
+		}
+
+		.header[aria-expanded=true] {
+			padding-bottom: 0;
+		}
+
+		.header {
+			padding-bottom: 2rem;
+			position: relative;
+		}
 	}
 </style>

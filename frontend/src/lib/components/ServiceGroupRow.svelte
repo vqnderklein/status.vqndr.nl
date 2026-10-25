@@ -13,7 +13,6 @@
 	let tooltipLeft = $state(0);
 	let activeBar = $state<number | null>(null);
 
-
 	async function showTooltip(event: MouseEvent, index: number) {
 		// Capture the element before awaiting tick().
 		const bar = event.currentTarget as HTMLElement;
@@ -107,7 +106,7 @@
 	.summaryStatusWrapper {
 		position: relative;
 		min-width: 0;
-        margin-bottom: 1rem;
+		margin-bottom: 1rem;
 	}
 
 	.summaryStatusBar {
@@ -231,5 +230,12 @@
 
 	.uptime {
 		color: var(--mut);
+	}
+
+	@media screen and (max-width: 550px) {
+		.summaryStatusBar {
+			display: flex;
+			gap: 1px;
+		}
 	}
 </style>

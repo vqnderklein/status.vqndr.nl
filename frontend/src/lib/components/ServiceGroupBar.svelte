@@ -1,6 +1,6 @@
 <script lang="ts">
 	let {
-		onHover
+		onHover,
 	}: {
 		onHover: (event: MouseEvent) => void;
 	} = $props();
@@ -27,5 +27,13 @@
 
 	.bar:hover {
 		opacity: 1;
+	}
+
+	@media screen and (max-width: 550px) {
+		.bar {
+			flex: 1;
+			min-width: 0;
+			width: auto;
+		}
 	}
 </style>

@@ -1,9 +1,52 @@
-<script>
+<script lang="ts">
 	import ServiceGroup from "$lib/components/ServiceGroup.svelte";
 	import IncidentSummaryBar from "$lib/components/IncidentSummaryBar.svelte";
 	import { CircleCheck } from "@lucide/svelte";
 
-	let incident = $state(true);
+	import type { Incident } from "$lib/types";
+
+	let incident: Incident = {
+		id: 1,
+		title: "Website verminderd bereikbaar",
+		description:
+			"De website was tijdelijk niet bereikbaar door een storing bij de hostingprovider.",
+		type: "verstoring",
+		status: "actief",
+		startDate: "2026-10-23T14:20:00",
+		endDate: "2026-10-23T15:05:00",
+	};
+
+	let incidents: Incident[] = [
+		{
+			id: 2,
+			title: "Verhoogde responstijden",
+			description:
+				"Sommige verzoeken naar de API kunnen langer duren dan gebruikelijk.",
+			type: "verstoring",
+			status: "actief",
+			startDate: "2026-10-24T10:15:00",
+		},
+		{
+			id: 3,
+			title: "Databaseonderhoud",
+			description:
+				"Gepland onderhoud aan de database om de prestaties te verbeteren.",
+			type: "onderhoud",
+			status: "afgerond",
+			startDate: "2026-10-26T02:00:00",
+			endDate: "2026-10-26T03:00:00",
+		},
+		{
+			id: 4,
+			title: "E-mailvertraging",
+			description:
+				"Het afleveren van e-mails duurde langer dan normaal.",
+			type: "verstoring",
+			status: "opgelost",
+			startDate: "2026-10-20T09:00:00",
+			endDate: "2026-10-20T09:45:00",
+		},
+	];
 </script>
 
 <svelte:head>
@@ -13,7 +56,7 @@
 {#if incident}
 	<h2>Lopend</h2>
 	<div class="incidentContainer">
-		<IncidentSummaryBar />
+		<IncidentSummaryBar {incident} />
 	</div>
 {/if}
 
@@ -76,9 +119,9 @@
 
 <h2>Recente incidenten</h2>
 
-<IncidentSummaryBar />
-<IncidentSummaryBar />
-<IncidentSummaryBar />
+{#each incidents as incident}
+	<IncidentSummaryBar {incident} />
+{/each}
 <a class="link" href="/history">Alle incidenten bekijken</a>
 
 <style>

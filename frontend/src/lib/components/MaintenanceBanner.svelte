@@ -27,6 +27,7 @@
 		height: 8px;
 		width: 8px;
 		background-color: var(--mnt);
+		aspect-ratio: 1;
 		border-radius: 50%;
 	}
 
@@ -63,4 +64,24 @@
 		text-decoration: none;
 		color: var(--mut);
 	}
+
+	@media screen and (max-width: 1150px) {
+		.container {
+			margin-top: -1rem;
+		}
+	}
+
+	@media screen and (max-width: 1050px) {
+		.container {
+			font-size: 14px;
+		}
+	}
+
+	@media screen and (max-width: 650px)
+	{
+		.container span.anchor {
+			display: none;
+		}
+	}
+
 </style>
