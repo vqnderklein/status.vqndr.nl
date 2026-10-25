@@ -18,7 +18,8 @@
     "license": "ISC",
     "type": "module",
     "dependencies": {
-        "dotenv": "^18.0.4",
+        "dotenv": "^18.0.9",
+        "dotenv-expand": "^1000.0.0",
         "drizzle-orm": "^0.45.3",
         "fastify": "^5.12.5",
         "fastify-type-provider-zod": "^7.0.0",
@@ -26,7 +27,7 @@
         "zod": "^4.6.7"
     },
     "devDependencies": {
-        "@types/node": "^26.6.3",
+        "@types/node": "^26.6.5",
         "@types/pg": "^8.23.1",
         "drizzle-kit": "^0.31.11",
         "tsx": "^4.23.15",
