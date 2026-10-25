@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { Bell } from "@lucide/svelte";
 
+	import { onMount } from "svelte";
+
 	import favicon from "$lib/assets/favicon.svg";
 	import "@fontsource-variable/figtree";
 	import { page } from "$app/state";
@@ -27,10 +29,29 @@
 	const onOwnPage = $derived(maintenance?.id === incidentId);
 
 	let { children } = $props();
+
+	let darkMode = $state(false);
+
+	onMount(() => {
+		const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+		const update = () => (darkMode = media.matches);
+
+		update();
+		media.addEventListener('change', update);
+
+		return () => media.removeEventListener('change', update);
+	});
 </script>
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
+	<link
+		rel="icon"
+		href={darkMode
+			? 'https://vqnderklein.nl/img/favicon-light.svg'
+			: 'https://vqnderklein.nl/img/favicon-dark.svg'}
+	/>
 </svelte:head>
 
 <div class="pageWrapper">
